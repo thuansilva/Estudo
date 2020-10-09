@@ -6,6 +6,13 @@
 # Prerequisites
 *.d
 
+# ignore tudo
+*
+# exclua os subdiretórios
+!/**/
+# exclua os arquivos com extensão
+!*.*
+
 # Object files
 *.o
 *.ko

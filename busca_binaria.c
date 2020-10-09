@@ -48,7 +48,7 @@ int main(int argc, char const *argv[])
     printf("VALOR PARA BUSCAR:");
     scanf("%d",&valor);
 
-    // funcção que realiza uma busca binaria
+    // função que realiza uma busca binaria
      res= BuscaBinaria(v_inicial, v_final, valor, vetor);
 /*       se o retorno da função for -1 o valor nao esta presente, 
     caso contrario, a posição eh apresentada */
