@@ -47,24 +47,40 @@
 
 # Realizando uma operação em uma lista 
 
-tecnologias = ['react-native', 'nodejs']
+# tecnologias = ['react-native', 'nodejs']
 
 # for item in tecnologias:
 #     print(item)
 
-# Com a palavra reservada 'Continue'
+###########################-------- Com a palavra reservada 'Continue'
 
-for item in tecnologias:
-    if item.startswith('r'):
-        continue
-    print(item)
+# for item in tecnologias:
+#     if item.startswith('r'):
+#         continue
+#     print(item)
 
 # criando um alias para um import 
-import math as met
+# import math as met
 
-print(met.sqrt(81))
+# print(met.sqrt(81))
 
-def sum(a,b):
-    return a+b
+# def sum(a,b):
+#     return a+b
 
-print(sum(1,2))
+# print(sum(1,2))
+
+
+##########------------CAPITULO 5 
+#DICS = È IGUAL AO MAP, Possui uma chave e um valor associado
+entidades =dict()
+#  entidades['Empreendimento']="ENTIDADESeMPREENDIMENTO"
+entidades ["Novo"] = "Filme"
+print(entidades)
+# criando uma Tupla
+tupla = ["Novo"]
+tupla.append(("ENTIDADESeMPREENDIMENTO","caasa"))
+print(tupla)
+
+#-------Para apagar usa o comando del
+# del entidades['Empreendimento']
+# print(entidades)
