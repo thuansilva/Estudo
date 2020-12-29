@@ -1,29 +1,37 @@
 {
-    // Use o IntelliSense para aprender sobre possíveis atributos.
-    // Passe o mouse para ver as descrições dos atributos existentes.
-    // Para obter mais informações, visite: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
+  // Use o IntelliSense para aprender sobre possíveis atributos.
+  // Passe o mouse para ver as descrições dos atributos existentes.
+  // Para obter mais informações, visite: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Teste Nodejs",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/javascript/cursoE.W/promisses"
+    },
+
+    {
+      "name": "gcc - Criar e depurar o arquivo ativo",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
         {
-            "name": "gcc - Criar e depurar o arquivo ativo",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Habilitar a reformatação automática para gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "gcc build active file",
-            "miDebuggerPath": "/usr/bin/gdb"
+          "description": "Habilitar a reformatação automática para gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
         }
-    ]
+      ],
+      "preLaunchTask": "gcc build active file",
+      "miDebuggerPath": "/usr/bin/gdb"
+    }
+  ]
 }
