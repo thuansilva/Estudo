@@ -12,7 +12,7 @@ Array.prototype.meuMap = function (callback) {
 
 async function main() {
   try {
-    const results = await server.abterPessoas();
+    const results = await server.obterPessoas();
     // const names = [];
     //o ForEach recebe uma função e pega o item do array e manipula
     /*     
