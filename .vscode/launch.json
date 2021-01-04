@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Teste Nodejs",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/javascript/cursoE.W/promisses"
+      "program": "${workspaceFolder}/javascript/cursoE.W/modulo-04/for-forin/3.filter.js"
     },
 
     {
