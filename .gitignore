@@ -45,7 +45,7 @@
 *.out
 *.app
 *.i*86
-*.x86_64
+*.x86_64>>>>>>> master
 *.hex
 
 # Debug files
@@ -83,4 +83,7 @@ dkms.conf
 # Executables
 
 # End of https://www.toptal.com/developers/gitignore/api/c,c++
+<<<<<<< Javascript
+saida.zip
+data
 
