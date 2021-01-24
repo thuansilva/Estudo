@@ -3,5 +3,9 @@
         "stdio.h": "c",
         "stdlib.h": "c",
         "TESTE.C": "cpp"
-    }
+    },
+    "sync.gist": "462d477901f25b77ed0bf3c81c8f2192",
+    "sync.autoUpload": true,
+    "sync.autoDownload": true,
+    "sync.quietSync": true
 }
