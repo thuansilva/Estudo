@@ -18,6 +18,9 @@ class Icrud {
   delete(id) {
     throw new NotImplemetedExceptions();
   }
+  isConnected() {
+    throw new NotImplemetedExceptions();
+  }
 }
 
 module.exports = Icrud;
