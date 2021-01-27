@@ -6,7 +6,6 @@ class ImplemetedPostress extends Icrud {
     super();
     this._driver = null;
     this._herois = null;
-    this._connect();
   }
   async isConnected() {
     try {
@@ -19,7 +18,7 @@ class ImplemetedPostress extends Icrud {
   }
 
   async defineModel() {
-    this._herois = driver.define(
+    this._herois = this._driver.define(
       "herois",
       {
         id: {
@@ -43,19 +42,24 @@ class ImplemetedPostress extends Icrud {
         timestamps: false,
       }
     );
-    await Herois.sync();
+    await this._herois.sync();
   }
-  _connect() {
+  async connect() {
     this._driver = new Sequelize("herois", "thuan", "minhasenhasecreta", {
       host: "localhost",
       dialect: "postgres",
       quoteIdentifiers: false,
       operatorsAlieses: false,
     });
+    await this.defineModel();
   }
 
-  create(item) {
-    console.log("O item foi criado no Postgress!");
+  async create(item) {
+    const { dataValues } = await this._herois.create(item);
+    return dataValues;
+  }
+  async read(item = {}) {
+    return await this._herois.findAll({ where: item, raw: true });
   }
 }
 
