@@ -61,6 +61,13 @@ class ImplemetedPostress extends Icrud {
   async read(item = {}) {
     return await this._herois.findAll({ where: item, raw: true });
   }
+  async update(id, item) {
+    return await this._herois.update(item, { where: { id: id } });
+  }
+  async delete(id) {
+    const query = id ? { id } : {};
+    return await this._herois.destroy({ where: query });
+  }
 }
 
 module.exports = ImplemetedPostress;
