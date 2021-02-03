@@ -6,13 +6,19 @@ class ContextStrategy {
     return this._database.create(item);
   }
   read(query) {
-    return this._database.query(query);
+    return this._database.read(query);
   }
   update(id, item) {
     return this._database.update(id, item);
   }
   delete(id) {
     return this._database.delete(id);
+  }
+  isConnected() {
+    return this._database.isConnected();
+  }
+  connect() {
+    return this._database.connect();
   }
 }
 
