@@ -12,10 +12,18 @@ const HEROIS_TEST_READ = {
   poder: "Vai Teia",
 };
 
+const HEROIS_TEST_UPDATE = {
+  nome: `pernalonga - ${Date.now()}`,
+  poder: "fala",
+};
+let DEFUALT_ID_UPDATE = "";
+
 describe("Mongo DB suite de testes", function () {
   this.beforeAll(async () => {
     await context.connect();
     await context.create(HEROIS_TEST_READ);
+    const id_update = await context.create(HEROIS_TEST_UPDATE);
+    DEFUALT_ID_UPDATE = id_update._id;
   });
   it("Testar conexão ao Mongodb", async () => {
     const statusConection = await context.isConnected();
@@ -34,4 +42,14 @@ describe("Mongo DB suite de testes", function () {
     const result = { nome, poder };
     assert.deepStrictEqual(result, HEROIS_TEST_READ);
   });
+
+  it("Atualizar Dados", async () => {
+    const result = await context.update(DEFUALT_ID_UPDATE, {
+      nome: "Patolino",
+      poder: "Mago",
+    });
+
+    assert.deepStrictEqual(result.ok, 1);
+  });
 });
+HEROIS_TEST_UPDATE;
