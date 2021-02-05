@@ -7,17 +7,31 @@ const HEROIS_DEFAULT = {
   nome: "mulher maravilha",
   poder: "laço",
 };
+const HEROIS_TEST_READ = {
+  nome: `Flash - ${Date.now()}`,
+  poder: "Vai Teia",
+};
 
 describe("Mongo DB suite de testes", function () {
   this.beforeAll(async () => {
     await context.connect();
+    await context.create(HEROIS_TEST_READ);
   });
   it("Testar conexão ao Mongodb", async () => {
     const statusConection = await context.isConnected();
+    console.log("statusConection", statusConection);
     assert.deepStrictEqual(statusConection, "connected");
   });
-  it.only("Cadastrar Herois", async () => {
+  it("Cadastrar Herois", async () => {
     const { nome, poder } = await context.create(HEROIS_DEFAULT);
     assert.deepStrictEqual({ nome, poder }, HEROIS_DEFAULT);
+  });
+
+  it("Listar herois", async () => {
+    const [{ nome, poder }] = await context.read({
+      nome: HEROIS_TEST_READ.nome,
+    });
+    const result = { nome, poder };
+    assert.deepStrictEqual(result, HEROIS_TEST_READ);
   });
 });

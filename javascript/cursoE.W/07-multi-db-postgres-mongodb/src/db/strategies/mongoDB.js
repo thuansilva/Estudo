@@ -15,7 +15,7 @@ class ImplemetedMongoDb extends Icrud {
   }
   async isConnected() {
     const stateConection = Status[this._driver.readyState];
-    if (stateConection === "connected") return true;
+    if (stateConection === "connected") return stateConection;
     if (stateConection !== "connecting") return stateConection;
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
@@ -57,6 +57,9 @@ class ImplemetedMongoDb extends Icrud {
   }
   async create(item) {
     return await this._tableHeroes.create(item);
+  }
+  async read(item, skip = 0, limit = 10) {
+    return await this._tableHeroes.find(item).skip(skip).limit(limit);
   }
 }
 
