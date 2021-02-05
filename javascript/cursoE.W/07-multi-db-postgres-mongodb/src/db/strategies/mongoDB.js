@@ -10,7 +10,7 @@ const Status = {
 class ImplemetedMongoDb extends Icrud {
   constructor() {
     super();
-    this._TableHeroes = null;
+    this._tableHeroes = null;
     this._driver = null;
   }
   async isConnected() {
@@ -21,7 +21,7 @@ class ImplemetedMongoDb extends Icrud {
 
     return Status[this._driver.readyState];
   }
-  connect() {
+  async connect() {
     Mongoose.connect(
       "mongodb://thuan:senhasecreta@localhost:27017/herois",
       { useNewUrlParser: true, useUnifiedTopology: true },
@@ -34,6 +34,7 @@ class ImplemetedMongoDb extends Icrud {
     const connection = Mongoose.connection;
     connection.once("open", () => console.log("Database rodando!!"));
     this._driver = connection;
+    await this.defineModel();
   }
 
   async defineModel() {
@@ -52,14 +53,10 @@ class ImplemetedMongoDb extends Icrud {
       },
     });
 
-    this._TableHeroes = Mongoose.model("herois", modelEschemaHeroes);
+    this._tableHeroes = Mongoose.model("herois", modelEschemaHeroes);
   }
   async create(item) {
-    const resultDataCadastrar = await tableHeroes.create({
-      nome: "batman",
-      poder: "dinheiro",
-    });
-    console.log("result cadastrar", resultDataCadastrar);
+    return await this._tableHeroes.create(item);
   }
 }
 

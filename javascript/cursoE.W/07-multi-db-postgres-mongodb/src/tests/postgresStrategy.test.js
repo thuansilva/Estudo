@@ -47,7 +47,7 @@ describe("Postgres Strategy", function () {
     const [result] = await context.read({ id: itemAtual.id });
     assert.deepStrictEqual(result.nome, novoItem.nome);
   });
-  it.only("Deletar dados", async function () {
+  it("Deletar dados", async function () {
     const [itemAtual] = await context.read({});
     const result = await context.delete(itemAtual.id);
     assert.deepStrictEqual(result, 1);
