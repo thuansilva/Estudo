@@ -49,7 +49,10 @@ describe("Mongo DB suite de testes", function () {
       poder: "Mago",
     });
 
-    assert.deepStrictEqual(result.ok, 1);
+    assert.deepStrictEqual(result.n, 1);
+  });
+  it("Deletar Dado", async () => {
+    const result = await context.delete(DEFUALT_ID_UPDATE);
+    assert.deepStrictEqual(result.n, 1);
   });
 });
-HEROIS_TEST_UPDATE;

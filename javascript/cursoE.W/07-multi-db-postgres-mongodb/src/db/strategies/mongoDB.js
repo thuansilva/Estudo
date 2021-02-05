@@ -64,6 +64,9 @@ class ImplemetedMongoDb extends Icrud {
   async update(id, item) {
     return await this._tableHeroes.updateOne({ _id: id }, item);
   }
+  async delete(id) {
+    return await this._tableHeroes.deleteOne({ _id: id });
+  }
 }
 
 module.exports = ImplemetedMongoDb;
