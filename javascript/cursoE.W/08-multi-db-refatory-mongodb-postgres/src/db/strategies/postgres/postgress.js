@@ -1,11 +1,11 @@
-const Icrud = require("./interface/interfaceCrud");
+const Icrud = require("../interface/interfaceCrud");
 const Sequelize = require("sequelize");
 
 class ImplemetedPostress extends Icrud {
-  constructor() {
+  constructor(connection, modelSchema) {
     super();
-    this._driver = null;
-    this._herois = null;
+    this._driver = connection;
+    this._herois = modelSchema;
   }
   async isConnected() {
     try {
@@ -17,14 +17,25 @@ class ImplemetedPostress extends Icrud {
     }
   }
 
-  async connect() {
-    this._driver = new Sequelize("herois", "thuan", "minhasenhasecreta", {
+  static connect() {
+    const connected = new Sequelize("herois", "thuan", "minhasenhasecreta", {
       host: "localhost",
       dialect: "postgres",
       quoteIdentifiers: false,
       operatorsAlieses: false,
+      logging: false,
     });
-    await this.defineModel();
+    return connected;
+  }
+
+  static defineModel(connection, modelSchema) {
+    const schemaDatabaseHerois = connection.define(
+      modelSchema.nome,
+      modelSchema.schema,
+      modelSchema.option
+    );
+    schemaDatabaseHerois.sync();
+    return schemaDatabaseHerois;
   }
 
   async create(item) {

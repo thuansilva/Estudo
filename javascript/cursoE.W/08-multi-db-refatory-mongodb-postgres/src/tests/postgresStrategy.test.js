@@ -1,8 +1,7 @@
 const assert = require("assert");
-const Postgres = require("../db/strategies/postgress");
-const Context = require("../db/strategies/base/constextStrategy");
-
-const context = new Context(new Postgres());
+const Postgres = require("../db/strategies/postgres/postgress");
+const TypeDatabase = require("../db/strategies/base/constextStrategy");
+const SchemaHerois = require("../db/strategies/postgres/schemas/heroiSchema");
 
 const HEROIS_DEFAULT = {
   nome: "Gavião",
@@ -13,11 +12,13 @@ const DATA_HEROIS_FOR_ACTULIZATION = {
   nome: "Maravilha",
   poder: "Grana",
 };
-
+let context = "";
 describe("Postgres Strategy", function () {
   this.timeout(Infinity);
   this.beforeAll(async function () {
-    await context.connect();
+    const connection = await Postgres.connect();
+    const model = Postgres.defineModel(connection, SchemaHerois);
+    context = new TypeDatabase(new Postgres(connection, model));
     await context.delete();
     await context.create(DATA_HEROIS_FOR_ACTULIZATION);
   });

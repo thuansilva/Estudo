@@ -19,7 +19,7 @@ const HEROIS_TEST_UPDATE = {
 let DEFUALT_ID_UPDATE = "";
 
 let context = "";
-describe.only("Mongo DB suite de testes", function () {
+describe("Mongo DB suite de testes", function () {
   this.beforeAll(async () => {
     const connection = Mongodb.connect();
     context = new TypeDatabase(new Mongodb(connection, ModelSchemaHeroes));
