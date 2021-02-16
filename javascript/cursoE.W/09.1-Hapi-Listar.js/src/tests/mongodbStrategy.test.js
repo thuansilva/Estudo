@@ -1,8 +1,8 @@
 const assert = require("assert");
-const Mongodb = require("../db/strategies/mongoDB");
+const Mongodb = require("../db/strategies/mongodb/mongoDB");
+const ModelSchemaHeroes = require("../db/strategies/mongodb/schemas/heroiSchema");
 const TypeDatabase = require("../db/strategies/base/constextStrategy");
 
-const context = new TypeDatabase(new Mongodb());
 const HEROIS_DEFAULT = {
   nome: "mulher maravilha",
   poder: "laço",
@@ -18,18 +18,20 @@ const HEROIS_TEST_UPDATE = {
 };
 let DEFUALT_ID_UPDATE = "";
 
+let context = "";
 describe("Mongo DB suite de testes", function () {
   this.beforeAll(async () => {
-    await context.connect();
+    const connection = Mongodb.connect();
+    context = new TypeDatabase(new Mongodb(connection, ModelSchemaHeroes));
     await context.create(HEROIS_TEST_READ);
     const id_update = await context.create(HEROIS_TEST_UPDATE);
     DEFUALT_ID_UPDATE = id_update._id;
   });
   it("Testar conexão ao Mongodb", async () => {
     const statusConection = await context.isConnected();
-    console.log("statusConection", statusConection);
     assert.deepStrictEqual(statusConection, "connected");
   });
+
   it("Cadastrar Herois", async () => {
     const { nome, poder } = await context.create(HEROIS_DEFAULT);
     assert.deepStrictEqual({ nome, poder }, HEROIS_DEFAULT);

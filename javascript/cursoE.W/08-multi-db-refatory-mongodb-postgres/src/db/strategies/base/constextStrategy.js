@@ -17,8 +17,8 @@ class ContextStrategy {
   isConnected() {
     return this._database.isConnected();
   }
-  connect() {
-    return this._database.connect();
+  static connect(connection, schemaModel) {
+    return this._database.connect(connection, schemaModel);
   }
 }
 

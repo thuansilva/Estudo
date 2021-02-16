@@ -1,4 +1,4 @@
-const Icrud = require("./interface/interfaceCrud");
+const Icrud = require("../interface/interfaceCrud");
 const Mongoose = require("mongoose");
 const Status = {
   0: "disconnected",
@@ -8,20 +8,20 @@ const Status = {
 };
 
 class ImplemetedMongoDb extends Icrud {
-  constructor() {
+  constructor(connection, schemaDatabase) {
     super();
-    this._tableHeroes = null;
-    this._driver = null;
+    this._tableHeroes = schemaDatabase;
+    this._connection = connection;
   }
   async isConnected() {
-    const stateConection = Status[this._driver.readyState];
+    const stateConection = Status[this._connection.readyState];
     if (stateConection === "connected") return stateConection;
     if (stateConection !== "connecting") return stateConection;
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    return Status[this._driver.readyState];
+    return Status[this._connection.readyState];
   }
-  async connect() {
+  static connect() {
     Mongoose.connect(
       "mongodb://thuan:senhasecreta@localhost:27017/herois",
       { useNewUrlParser: true, useUnifiedTopology: true },
@@ -32,29 +32,10 @@ class ImplemetedMongoDb extends Icrud {
     );
 
     const connection = Mongoose.connection;
-    connection.once("open", () => console.log("Database rodando!!"));
-    this._driver = connection;
-    await this.defineModel();
+    // connection.once("open", () => console.log("Database rodando!!"));
+    return connection;
   }
 
-  async defineModel() {
-    const modelEschemaHeroes = new Mongoose.Schema({
-      nome: {
-        type: String,
-        required: true,
-      },
-      poder: {
-        type: String,
-        required: true,
-      },
-      insertedAt: {
-        type: Date,
-        default: new Date(),
-      },
-    });
-
-    this._tableHeroes = Mongoose.model("herois", modelEschemaHeroes);
-  }
   async create(item) {
     return await this._tableHeroes.create(item);
   }
