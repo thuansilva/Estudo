@@ -11,14 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^18.1.0",
-    "joi": "^14.1.0",
-    "mongoose": "^5.11.14",
-    "pg": "^8.5.1",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^6.4.0"
+    "hapi": "latest",
+    "joi": "latest",
+    "mongoose": "latest",
+    "pg": "latest",
+    "pg-hstore": "latest",
+    "sequelize": "latest"
   },
   "devDependencies": {
-    "mocha": "^8.2.1"
+    "mocha": "latest"
   }
 }
