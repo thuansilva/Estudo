@@ -30,28 +30,6 @@ int main()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Outra forma de fazer, usando alocação dinamica 
 //  #include <stdio.h>
 // #include <stdlib.h>

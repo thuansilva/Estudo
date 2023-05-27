@@ -1,3 +1,14 @@
+# 1030 - A Lenda de Flavious Josephus
+
+## [Descrição](https://www.beecrowd.com.br/judge/pt/problems/view/1030)
+
+## Solução
+
+Vide problema [1030 - A Lenda de Flavious Josephus](../1030/README.md).
+
+### Python
+
+```py
 import sys
 sys.setrecursionlimit(100000000)
 
@@ -14,3 +25,5 @@ for item in range(NC):
   k = int(input())
   result = josephus(n,k)
   print('Case %d: %d'%(item+1, result))
+
+```
