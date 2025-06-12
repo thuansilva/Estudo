@@ -13,5 +13,5 @@ JOIN
     emp_venc ev ON e.matr = ev.matr
 JOIN 
     vencimento v ON ev.cod_venc = v.cod_venc
-ORDER BY 
+ORDER BY j
     media DESC;
